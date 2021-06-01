@@ -1,1 +1,1 @@
-# italian_lotto_game
+# Italian Lotto Game
