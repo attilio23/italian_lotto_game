@@ -16,15 +16,19 @@ The file from which to start the program.
 The folder that contains all the classes used in the program:
   
   * NumbersPlayed:
+  
        It represents the set of numbers played for a specific ticket.
   
   * BillType:
+  
        It represents the bill type for a specific ticket.
   
   * City:
+       
        It represents the city for a specific ticket.
   
   * Ticket:
+       
        It represents a ticket.
 
 * line_content.py:
