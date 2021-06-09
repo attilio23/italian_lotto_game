@@ -30,7 +30,6 @@ The folder that contains all the classes used in the program:
   * Ticket:
        
     It represents a ticket.
+  * PrintOutput:
 
-* line_content.py:
-The file that contains the functions that are used for printing tickets.
-
+    It manages the printing of the output and the ticket.
