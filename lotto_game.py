@@ -39,7 +39,7 @@ def start(tckt_nmbr):
 
   for ticket in tickets:
     print(ticket)
-    print(Ticket.WinningControl(extraction, ticket))
+    print(ticket.WinningControl(extraction))
 
 
 if __name__ == "__main__":

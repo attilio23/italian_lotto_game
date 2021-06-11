@@ -46,11 +46,11 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
         self.c.city_name = city
 
     
-    def WinningControl(extraction, ticket):
-        (c, n_g) = extraction.TicketIsWinning(ticket.b_t.type, ticket.c.city_name, ticket.n_p.numbers)
+    def WinningControl(self, extraction):
+        (c, n_g) = extraction.TicketIsWinning(self.b_t.type, self.c.city_name, self.n_p.numbers)
     
         if c:
-            return "THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n" % (ticket.b_t.type.upper(), c.upper(), n_g)
+            return "THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n" % (self.b_t.type.upper(), c.upper(), n_g)
         return "THE TICKET IS NOT WINNING\n"
 
 
