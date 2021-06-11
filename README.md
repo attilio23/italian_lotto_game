@@ -4,9 +4,9 @@ It consists of three learning paths.
 For more information about the Lotto Game visit: https://www.sisal.it/lotto/come-si-gioca
 
 ## Learning path 2
-If the user has generated one or more tickets, check whether each 
-ticket is winning or not (showing the result, if the 
-ticket is winning) based on the extraction generated.
+This branch represents the second level of the project. If the user has generated 
+one or more tickets, check whether each ticket is winning or 
+not (showing the result, if the ticket is winning) based on the extraction generated.
 
 ### Structure
 * lotto_game.py:
