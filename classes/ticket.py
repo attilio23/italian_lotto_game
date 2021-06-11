@@ -19,7 +19,7 @@ class Ticket():
             number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")    
         
         self.n_p.GenerateNumbers(int(number_amount))
-        return int(number_amount)
+        return int(number_amount) 
     
     
     def SetBillType(self, number_amount):
@@ -44,6 +44,14 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
             city = input("Enter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
         
         self.c.city_name = city
+
+    
+    def WinningControl(extraction, ticket):
+        (c, n_g) = extraction.TicketIsWinning(ticket.b_t.type, ticket.c.city_name, ticket.n_p.numbers)
+    
+        if c:
+            return "THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n" % (ticket.b_t.type.upper(), c.upper(), n_g)
+        return "THE TICKET IS NOT WINNING\n"
 
 
     def __str__(self):

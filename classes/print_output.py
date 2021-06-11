@@ -100,4 +100,4 @@ class PrintOutput():
             s_extraction = s_extraction + PrintOutput.PrintTableLine(PrintOutput.ta_width_2, (PrintOutput.PrintToLeft2(PrintOutput.ta_width_3, cities[i].upper())) + delimeter.join(wheels[cities[i]])) + "\n"
         
         s_extraction = s_extraction + PrintOutput.CloseTable(PrintOutput.ta_width_2)
-        return s_extraction           
+        return s_extraction

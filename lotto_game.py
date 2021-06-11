@@ -27,10 +27,10 @@ def start(tckt_nmbr):
     i = i + 1
  
   
-  extraction_1 = Extraction()
-  extraction_1.AddExtraction()
+  extraction = Extraction()
+  extraction.AddExtraction()
   print((PrintOutput.PrintLine("LOTTO EXTRACTION:")) + "\n")
-  print(extraction_1)
+  print(extraction)
 
   if len(tickets) == 1:
     print((PrintOutput.PrintLine("YOUR TICKET:")) + "\n")
@@ -39,12 +39,7 @@ def start(tckt_nmbr):
 
   for ticket in tickets:
     print(ticket)
-    (c, n_g) = extraction_1.TicketIsWinning(ticket.b_t.type, ticket.c.city_name, ticket.n_p.numbers)
-    
-    if c:
-      print("THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n" % (ticket.b_t.type.upper(), c.upper(), n_g))
-    else:
-      print("THE TICKET IS NOT WINNING\n")
+    print(Ticket.WinningControl(extraction, ticket))
 
 
 if __name__ == "__main__":
