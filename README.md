@@ -3,10 +3,10 @@ This project is based on the Italian Lotto Game.
 It consists of three learning paths.  
 For more information about the Lotto Game visit: https://www.sisal.it/lotto/come-si-gioca
 
-## Learning path 1
-This branch represents the first level of the project. The user can generate one or 
-more tickets by choosing the amount of numbers to be played, the type of bill(consistent
-with the amount of numbers to be generated) and the city of the bill for each ticket.
+## Learning path 2
+If the user has generated one or more tickets, check whether each 
+ticket is winning or not (showing the result, if the 
+ticket is winning) based on the extraction generated.
 
 ### Structure
 * lotto_game.py:
@@ -30,7 +30,11 @@ The folder that contains all the classes used in the program:
   * Ticket:
        
     It represents a ticket.
+  
+  * Extraction:
+     
+    It represents an extraction.
+  
+  * PrintOutput:
 
-* line_content.py:
-The file that contains the functions that are used for printing tickets.
-
+    It manages the printing of the output and the ticket.
