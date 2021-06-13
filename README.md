@@ -30,6 +30,7 @@ The folder that contains all the classes used in the program:
   * Ticket:
        
     It represents a ticket.
+  
   * PrintOutput:
 
     It manages the printing of the output and the ticket.

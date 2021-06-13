@@ -20,16 +20,16 @@ def start(tckt_nmbr):
 
   for ticket in tickets:
     print((PrintOutput.PrintLine("GENERATING THE TICKET " + str(i) + "...")) + "\n")
-    nmbr_amount = ticket.SetNumbersPlayed()
-    ticket.SetBillType(nmbr_amount)
+    ticket.SetNumbersPlayed()
+    ticket.SetBillType()
     ticket.SetCity()
     i = i + 1
-
+ 
   if len(tickets) == 1:
     print((PrintOutput.PrintLine("YOUR TICKET:")) + "\n")
   else:
-    print((PrintOutput.PrintLine("YOUR TICKETS:")) + "\n") 
-  
+    print((PrintOutput.PrintLine("YOUR TICKETS:")) + "\n")
+
   for ticket in tickets:
     print(ticket)
 
