@@ -41,14 +41,14 @@ class PrintOutput():
         return content + (" " * ((width - 1) - len(content))) 
     
     
-    def PrintTicket(city_name, type, numbers):
+    def PrintTicket(city_name, type, numbers, amount):
         s_ticket = ""
         s_lotto = ["┌──┐   ┌─────┐┌─────────┐┌─────────┐┌─────┐", \
                    "│  │   │ ┌─┐ │└──┐   ┌──┘└──┐   ┌──┘│ ┌─┐ │", \
                    "│  │   │ │ │ │   │   │      │   │   │ │ │ │", \
                    "│  └──┐│ └─┘ │   │   │      │   │   │ └─┘ │", \
                    "└─────┘└─────┘   └───┘      └───┘   └─────┘"]
-        ticket_features = ["CITY: " + city_name, "TYPE: " + type]
+        ticket_features = ["AMOUNT: " + amount, "CITY: " + city_name, "TYPE: " + type]
         s_ticket = s_ticket + PrintOutput.OpenTable(PrintOutput.ta_width_1) + "\n"
         
         for line in s_lotto:
@@ -100,4 +100,21 @@ class PrintOutput():
             s_extraction = s_extraction + PrintOutput.PrintTableLine(PrintOutput.ta_width_2, (PrintOutput.PrintToLeft2(PrintOutput.ta_width_3, cities[i].upper())) + delimeter.join(wheels[cities[i]])) + "\n"
         
         s_extraction = s_extraction + PrintOutput.CloseTable(PrintOutput.ta_width_2)
-        return s_extraction           
+        return s_extraction 
+
+
+    def ThousandsSeparator(number):
+        new_string = ""
+        i = len(number) - 1
+        j = 1
+        
+        while i >= 0:
+            new_string = number[i] + new_string
+            
+            if not(j % 3) and len(number) != j:
+                new_string = "." + new_string
+            
+            i = i - 1
+            j = j + 1
+        
+        return new_string

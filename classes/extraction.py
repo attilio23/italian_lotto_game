@@ -46,7 +46,6 @@ class Extraction():
             delimeter = " "
             
             while j < len(numbers_l) and c_numbers_guessed < BillType.tyId[type]:
-                
                 if numbers_l[j] in self.wheels[city_name]:
                     c_numbers_guessed = c_numbers_guessed + 1
                     numbers_guessed.append(str(numbers_l[j]))
@@ -57,7 +56,6 @@ class Extraction():
                 del numbers_l
                 del numbers_guessed
                 return (city_name, s_numbers_guessed)
-        
         else:
             for i in range(len(City.cities) - 1):
                 numbers_l = numbers.split()
@@ -68,7 +66,6 @@ class Extraction():
                 delimeter = " "
 
                 while j < len(numbers_l) and c_numbers_guessed < BillType.tyId[type]:
-                    
                     if numbers_l[j] in self.wheels[City.cities[i]]:
                         c_numbers_guessed = c_numbers_guessed + 1
                         numbers_guessed.append(str(numbers_l[j]))
