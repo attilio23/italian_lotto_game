@@ -13,7 +13,9 @@ class BillType():
         return "%s" % (self.type)
     
     
-    def IsTypeValid(type, num_amount, t_v = tyId):
-        if type in t_v.keys() and num_amount >= t_v[type]:
+    def IsTypeValid(self, type, num_amount, t_v = tyId):
+        if type in t_v.keys() and int(num_amount) >= t_v[type]:
+            self.type = type
             return True
+        
         return False

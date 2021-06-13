@@ -14,36 +14,31 @@ class Ticket():
     def SetNumbersPlayed(self):
         number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")
         
-        while not(NumbersPlayed.NumAmountIsValid(number_amount)):
+        while not(self.n_p.NumAmountIsValid(number_amount)):
             print("\nThe input is invalid.")
             number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")    
         
-        self.n_p.GenerateNumbers(int(number_amount))
-        return int(number_amount) 
+        self.n_p.GenerateNumbers()
+
     
-    
-    def SetBillType(self, number_amount):
+    def SetBillType(self):
         bill_type = input("\nEnter the type of bill:\nAmbata ---> At least one number must be played\n\
 Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
 Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
         
-        while not(BillType.IsTypeValid(bill_type, number_amount)):
+        while not(self.b_t.IsTypeValid(bill_type, self.n_p.num_amount)):
             print("\nThe input is invalid.")
             bill_type = input("Enter the type of bill:\nAmbata ---> At least one number must be played\n\
 Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
 Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
         
-        self.b_t.type = bill_type
-    
     
     def SetCity(self):
         city = input("\nEnter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
         
-        while not(City.IsCityValid(city)):
+        while not(self.c.IsCityValid(city)):
             print("\nThe input is invalid.")
             city = input("Enter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
-        
-        self.c.city_name = city
 
     
     def WinningControl(self, extraction):

@@ -5,7 +5,7 @@ For more information about the Lotto Game visit: https://www.sisal.it/lotto/come
 
 ## Learning path 2
 This branch represents the second level of the project. If the user has generated 
-one or more tickets, check whether each ticket is winning or 
+one or more tickets, is checked whether each ticket is winning or 
 not (showing the result, if the ticket is winning) based on the extraction generated.
 
 ### Structure
