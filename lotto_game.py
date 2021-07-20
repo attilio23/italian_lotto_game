@@ -1,52 +1,26 @@
-from classes.extraction import Extraction
+from classes.lotto import Lotto 
 from classes.ticket import Ticket
-from classes.print_output import PrintOutput
+from classes.print_helper import PrintHelper
+from classes.lotto import Extraction 
 
 
-MN_QUANTITY = 1
-MX_QUANTITY = 5
+MIN_QUANTITY = 1
+MAX_QUANTITY = 5
 
 
 def start(tckt_nmbr):
   if not(tckt_nmbr):
-    print("\n" + (PrintOutput.PrintLine("NO TICKETS WERE GENERATED")))
+    print("\n" + (PrintHelper.print_line("NO TICKETS WERE GENERATED")))
     quit()
-  
-  tickets = []
-  
-  for i in range (tckt_nmbr):
-    tickets.append(Ticket())
 
-  i = 1
-
-  for ticket in tickets:
-    print((PrintOutput.PrintLine("GENERATING THE TICKET " + str(i) + "...")) + "\n")
-    ticket.SetNumbersPlayed()
-    ticket.SetBillType()
-    ticket.SetCity()
-    i = i + 1
- 
-  
-  extraction = Extraction()
-  extraction.AddExtraction()
-  print((PrintOutput.PrintLine("LOTTO EXTRACTION:")) + "\n")
-  print(extraction)
-
-  if len(tickets) == 1:
-    print((PrintOutput.PrintLine("YOUR TICKET:")) + "\n")
-  else:
-    print((PrintOutput.PrintLine("YOUR TICKETS:")) + "\n")
-
-  for ticket in tickets:
-    print(ticket)
-    print(ticket.WinningControl(extraction))
+  Lotto.extraction_and_tickets(Lotto.ticket_creation(tckt_nmbr), Lotto.extraction_creation())
 
 
 if __name__ == "__main__":
-  print((PrintOutput.PrintLine("LOTTO TICKET GENERATOR")) + "\n")
+  print((PrintHelper.print_line("LOTTO TICKET GENERATOR")) + "\n")
   ticket_quantity = input("\nEnter the number of tickets you want to generate: (min: 1, max: 5, 0: exit)\n\n")
   
-  while ticket_quantity < str(MN_QUANTITY - 1) or ticket_quantity > str(MX_QUANTITY) or len(ticket_quantity) != 1:
+  while ticket_quantity < str(MIN_QUANTITY - 1) or ticket_quantity > str(MAX_QUANTITY) or len(ticket_quantity) != 1:
     print("\nThe input is invalid.")
     ticket_quantity = input("Enter the number of tickets you want to generate: (min: 1, max: 5, 0: exit)\n\n") 
   

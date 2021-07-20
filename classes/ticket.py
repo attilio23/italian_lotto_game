@@ -1,53 +1,47 @@
+from random import randrange
 from classes.bill_type import BillType
-from classes.numbers_played import NumbersPlayed
 from classes.city import City
-from classes.print_output import PrintOutput
+from classes.print_helper import PrintHelper
 
 
 class Ticket():
-    def __init__(self, type = "", city_name = "", numbers = "",):
+    def __init__(self, type = "", city_name = ""):
         self.b_t = BillType(type)
-        self.n_p = NumbersPlayed(numbers)
-        self.c = City(city_name)    
-    
-
-    def SetNumbersPlayed(self):
-        number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")
-        
-        while not(self.n_p.NumAmountIsValid(number_amount)):
-            print("\nThe input is invalid.")
-            number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")    
-        
-        self.n_p.GenerateNumbers()
+        self.c = City(city_name) 
+        self.n_p = []
 
     
-    def SetBillType(self):
-        bill_type = input("\nEnter the type of bill:\nAmbata ---> At least one number must be played\n\
-Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
-Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
+    def generate_numbers(self, num_amount):
+        mn_amount = 1
+        mx_amount = 10
         
-        while not(self.b_t.IsTypeValid(bill_type, self.n_p.num_amount)):
-            print("\nThe input is invalid.")
-            bill_type = input("Enter the type of bill:\nAmbata ---> At least one number must be played\n\
-Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
-Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
-        
-    
-    def SetCity(self):
-        city = input("\nEnter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
-        
-        while not(self.c.IsCityValid(city)):
-            print("\nThe input is invalid.")
-            city = input("Enter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
+        try:
+            if mn_amount <= int(num_amount) <= mx_amount:
+                mn = 1
+                mx = 90
+                i = 0
+                
+                while i < int(num_amount):
+                    num = randrange(mn, mx + 1)
+            
+                    if not(num in self.n_p):
+                        i = i + 1
+                        self.n_p.append(num)  
+                
+                self.n_p.sort()
+                i = 0
 
-    
-    def WinningControl(self, extraction):
-        (c, n_g) = extraction.TicketIsWinning(self.b_t.type, self.c.city_name, self.n_p.numbers)
-    
-        if c:
-            return "THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n" % (self.b_t.type.upper(), c.upper(), n_g)
-        return "THE TICKET IS NOT WINNING\n"
+                while i < len(self.n_p):
+                    self.n_p.insert(i, str(self.n_p.pop(i)))
+                    i = i + 1
+ 
+                return True
 
-
+            return False
+        except:
+            return False   
+    
+    
     def __str__(self):
-        return PrintOutput.PrintTicket(self.c.city_name, self.b_t.type, self.n_p.numbers)
+        delimeter = " "
+        return PrintHelper.print_ticket(self.c.city_name, self.b_t.type, delimeter.join(self.n_p))
