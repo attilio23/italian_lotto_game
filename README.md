@@ -16,9 +16,9 @@ The file from which to start the program.
 * classes:
 The folder that contains all the classes used in the program:
   
-  * NumbersPlayed:
+  * Lotto:
   
-    It represents the set of numbers played for a specific ticket.
+    It manages the logic of the program.
   
   * BillType:
   
@@ -40,6 +40,6 @@ The folder that contains all the classes used in the program:
      
     It represents an extraction.
   
-  * PrintOutput:
+  * PrintHelper:
 
     It manages the printing of the output, the ticket and the extraction.

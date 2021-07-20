@@ -1,5 +1,5 @@
 from classes.bill_type import BillType
-from classes.print_output import PrintOutput
+from classes.print_helper import PrintHelper
 
 
 class AmountPlayed():
@@ -23,7 +23,7 @@ class AmountPlayed():
         return "%s" % (self.amount)
     
 
-    def IsAmountValid(self, amount):
+    def is_amount_valid(self, amount):
         mn = 1.00
         mx = 200.00
         
@@ -49,22 +49,20 @@ class AmountPlayed():
             return False
 
 
-    def CalculatePrize(self, city, b_type, n_played):
-        n_played_l = n_played.split()
-        n_played_l_l = len(n_played_l)
+    def calculate_prize(self, city, b_type, num_amount):
         amount = self.amount.replace(",", ".")
         amount = amount[: amount.find(" €")]
 
         if city == "Tutte":
-            gross_prize = (float(amount) * AmountPlayed.np_gross[n_played_l_l][BillType.tyId[b_type] - 1]) / 10
-            net_prize = (float(amount) * AmountPlayed.np_net[n_played_l_l][BillType.tyId[b_type] - 1]) / 10
+            gross_prize = (float(amount) * AmountPlayed.np_gross[num_amount][BillType.tyId[b_type] - 1]) / 10
+            net_prize = (float(amount) * AmountPlayed.np_net[num_amount][BillType.tyId[b_type] - 1]) / 10
         else:
-            gross_prize = round(float(amount) * AmountPlayed.np_gross[n_played_l_l][BillType.tyId[b_type] - 1], 2)
-            net_prize = round(float(amount) * AmountPlayed.np_net[n_played_l_l][BillType.tyId[b_type] - 1], 2)    
+            gross_prize = round(float(amount) * AmountPlayed.np_gross[num_amount][BillType.tyId[b_type] - 1], 2)
+            net_prize = round(float(amount) * AmountPlayed.np_net[num_amount][BillType.tyId[b_type] - 1], 2)    
     
         gross_prize = "%.2f" % (gross_prize)
         net_prize = "%.2f" % (net_prize)
         gross_prize = gross_prize.replace(".", ",")
         net_prize = net_prize.replace(".", ",")
-        return (PrintOutput.ThousandsSeparator(gross_prize[: gross_prize.find(",")]) + gross_prize[gross_prize.find(",") :] + " €", \
-PrintOutput.ThousandsSeparator(net_prize[: net_prize.find(",")]) + net_prize[net_prize.find(",") :] + " €")
+        return (PrintHelper.thousands_separator(gross_prize[: gross_prize.find(",")]) + gross_prize[gross_prize.find(",") :] + " €", \
+PrintHelper.thousands_separator(net_prize[: net_prize.find(",")]) + net_prize[net_prize.find(",") :] + " €")
