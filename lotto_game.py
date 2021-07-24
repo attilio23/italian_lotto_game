@@ -12,8 +12,8 @@ def start(tckt_nmbr):
     print("\n" + (PrintHelper.print_line("NO TICKETS WERE GENERATED")))
     quit()
 
-  
-  Lotto.print_tickets(Lotto.ticket_creation(tckt_nmbr))
+  tickets = Lotto.ticket_creation(tckt_nmbr)
+  Lotto.print_tickets(tickets)
 
 
 if __name__ == "__main__":
