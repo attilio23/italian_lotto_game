@@ -4,34 +4,42 @@ class PrintHelper():
     separator_length = 21
     
     
+    @staticmethod
     def print_table_line(content = ""):
         return "║" + content.center(PrintHelper.ta_width) + "║"
     
 
+    @staticmethod
     def print_line(content = ""):
         return content.center(PrintHelper.te_width)
 
 
+    @staticmethod
     def open_table():
         return "╔" + ("═" * PrintHelper.ta_width) + "╗" + "\n" + PrintHelper.print_table_line()
 
 
+    @staticmethod
     def close_table():
         return PrintHelper.print_table_line() + "\n" + "╚" + ("═" * PrintHelper.ta_width) + "╝"
 
 
+    @staticmethod
     def close_open_table():
         return PrintHelper.print_table_line() + "\n" + "╠" + ("═" * PrintHelper.ta_width) + "╣" + "\n" + PrintHelper.print_table_line()
 
 
+    @staticmethod
     def print_separator():
         return PrintHelper.print_table_line() + "\n" + "" + PrintHelper.print_table_line("_" * PrintHelper.separator_length) + "\n" + PrintHelper.print_table_line()
 
     
+    @staticmethod
     def print_to_left(content = ""):
         return "║ " + content + (" " * ((PrintHelper.ta_width - 1) - len(content))) + "║"
 
     
+    @staticmethod
     def print_ticket(city_name, type, numbers):
         s_ticket = ""
         s_lotto = ["┌──┐   ┌─────┐┌─────────┐┌─────────┐┌─────┐", \
