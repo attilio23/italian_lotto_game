@@ -9,38 +9,47 @@ class PrintHelper():
     separator_length = 21
     
     
+    @staticmethod
     def print_table_line(width, content = ""):
         return "║" + content.center(width) + "║"
     
 
+    @staticmethod    
     def print_line(content = ""):
         return content.center(PrintHelper.te_width)
 
 
+    @staticmethod
     def open_table(width):
         return "╔" + ("═" * width) + "╗" + "\n" + PrintHelper.print_table_line(width)
 
 
+    @staticmethod
     def close_table(width):
         return PrintHelper.print_table_line(width) + "\n" + "╚" + ("═" * width) + "╝"
 
 
+    @staticmethod
     def close_open_table(width):
         return PrintHelper.print_table_line(width) + "\n" + "╠" + ("═" * width) + "╣" + "\n" + PrintHelper.print_table_line(width)
 
 
+    @staticmethod
     def print_separator(width):
         return PrintHelper.print_table_line(width) + "\n" + "" + PrintHelper.print_table_line(width, "_" * PrintHelper.separator_length) + "\n" + PrintHelper.print_table_line(width)
 
     
+    @staticmethod
     def print_to_left_1(width, content = ""):
         return "║ " + content + (" " * ((width - 1) - len(content))) + "║"
 
     
+    @staticmethod
     def print_to_left_2(width, content = ""):    
         return content + (" " * ((width - 1) - len(content)))
 
     
+    @staticmethod
     def print_ticket(city_name, type, numbers, amount):
         s_ticket = ""
         s_lotto = ["┌──┐   ┌─────┐┌─────────┐┌─────────┐┌─────┐", \
@@ -70,6 +79,7 @@ class PrintHelper():
         return s_ticket
 
 
+    @staticmethod
     def print_extraction(wheels):
         s_extraction = ""
         s_lotto = ["┌──┐   ┌─────┐┌─────────┐┌─────────┐┌─────┐", \
@@ -103,6 +113,7 @@ class PrintHelper():
         return s_extraction
 
     
+    @staticmethod
     def thousands_separator(number):
         new_string = ""
         i = len(number) - 1

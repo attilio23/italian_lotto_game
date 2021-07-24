@@ -5,6 +5,7 @@ from classes.ticket import Ticket
 from classes.extraction import Extraction
 
 class Lotto():
+    @staticmethod
     def set_number_played(t):
         number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")
         b = t.generate_numbers(number_amount)
@@ -15,6 +16,7 @@ class Lotto():
             b = t.generate_numbers(number_amount)
 
     
+    @staticmethod
     def set_bill_type(t):
         bill_type = input("\nEnter the type of bill:\nAmbata ---> At least one number must be played\n\
 Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
@@ -24,9 +26,10 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
             print("\nThe input is invalid.")
             bill_type = input("Enter the type of bill:\nAmbata ---> At least one number must be played\n\
 Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
-Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
-        
-    
+Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")        
+
+
+    @staticmethod
     def set_city(t):
         city = input("\nEnter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
         
@@ -35,14 +38,16 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
             city = input("Enter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
     
 
-    def set_amount(self):
+    @staticmethod
+    def set_amount(t):
         amount = input("\nEnter the amount to play, expressing it up to the second decimal digit: (min: 1,00 €, max: 200,00 €, increments: 0,50 €)\n\n")
         
-        while not(self.a_p.is_amount_valid(amount)):
+        while not(t.a_p.is_amount_valid(amount)):
             print("\nThe input is invalid.")
             amount = input("\nEnter the amount to play, expressing it up to the second decimal digit: (min: 1,00 €, max: 200,00 €, increments: 0,50 €)\n\n")
 
 
+    @staticmethod
     def winning_control(t, e):
         (c, n_g) = e.ticket_is_winning(t.b_t.type, t.c.city_name, t.n_p)
     
@@ -52,6 +57,7 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
         return "THE TICKET IS NOT WINNING\n"
 
 
+    @staticmethod
     def ticket_creation(t_n):
         ts = []
 
@@ -71,12 +77,14 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
         return ts
 
 
+    @staticmethod
     def extraction_creation():
         e = Extraction() 
         e.add_extraction()
         return e
 
 
+    @staticmethod
     def extraction_and_tickets(ts, e):
         print((PrintHelper.print_line("LOTTO EXTRACTION:")) + "\n")
         print(e)
