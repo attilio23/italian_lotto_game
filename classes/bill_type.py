@@ -10,9 +10,9 @@ class BillType():
         return "%s" % (self.type)
     
     
-    def is_type_valid(self, type, num_amount, t_v = tyId):
+    @staticmethod
+    def is_type_valid(type, num_amount, t_v = tyId):
         if type in t_v.keys() and int(num_amount) >= t_v[type]:
-            self.type = type
             return True
         
         return False

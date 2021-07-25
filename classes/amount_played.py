@@ -18,12 +18,13 @@ class AmountPlayed():
     def __init__(self, amount = ""):
         self.amount = amount
 
-    
+
     def __str__(self):
         return "%s" % (self.amount)
     
 
-    def is_amount_valid(self, amount):
+    @staticmethod
+    def is_amount_valid(amount):
         mn = 1.00
         mx = 200.00
         
@@ -36,12 +37,10 @@ class AmountPlayed():
             return False
         
         if len(amount[: amount.find(".")]) > 1 and amount[: amount.find(".")][0] == "0":
-            return False 
+            return False
 
         try:
             if mn <= float(amount) <= mx:
-                amount = amount.replace(".", ",")
-                self.amount = amount + " €"
                 return True
             
             return False

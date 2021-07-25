@@ -1,60 +1,59 @@
+from classes.amount_played import AmountPlayed
 from classes.bill_type import BillType
 from classes.city import City
 from classes.print_helper import PrintHelper
-from classes.ticket import Ticket
 from classes.extraction import Extraction
+from classes.ticket import Ticket
 
 class Lotto():
     @staticmethod
-    def set_number_played(t):
+    def choose_numbers():
         number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")
-        b = t.generate_numbers(number_amount)
+        numbers = Ticket.generate_numbers(number_amount)
         
-        while not(b):
+        while not(numbers):
             print("\nThe input is invalid.")
             number_amount = input("How many numbers do you want to play? (max 10 per bill)\n\n")    
-            b = t.generate_numbers(number_amount)
+            numbers = Ticket.generate_numbers(number_amount)
+
+        return numbers
 
     
     @staticmethod
-    def set_bill_type(t):
+    def choose_bill_type(t):
         bill_type = input("\nEnter the type of bill:\nAmbata ---> At least one number must be played\n\
 Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
 Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
         
-        while not(t.b_t.is_type_valid(bill_type, len(t.n_p))):
+        while not(BillType.is_type_valid(bill_type, len(t.n_p))):
             print("\nThe input is invalid.")
             bill_type = input("Enter the type of bill:\nAmbata ---> At least one number must be played\n\
 Ambo ---> At least two numbers must be played\nTerno ---> At least three numbers must be played\n\
-Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")        
+Quaterna ---> At least four numbers must be played\nCinquina ---> At least five numbers must be played\n\n")
+        
+        return bill_type
 
-
+    
     @staticmethod
-    def set_city(t):
+    def choose_city():
         city = input("\nEnter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
         
-        while not(t.c.is_city_valid(city)):
+        while not(City.is_city_valid(city)):
             print("\nThe input is invalid.")
             city = input("Enter the city of the bill: (Bari, Cagliari, Firenze, Genova, Milano, Napoli, Palermo, Roma, Torino, Venezia, Tutte)\n\n")
     
+        return city
+
 
     @staticmethod
-    def set_amount(t):
+    def choose_amount():
         amount = input("\nEnter the amount to play, expressing it up to the second decimal digit: (min: 1,00 €, max: 200,00 €, increments: 0,50 €)\n\n")
         
-        while not(t.a_p.is_amount_valid(amount)):
+        while not(AmountPlayed.is_amount_valid(amount)):
             print("\nThe input is invalid.")
-            amount = input("\nEnter the amount to play, expressing it up to the second decimal digit: (min: 1,00 €, max: 200,00 €, increments: 0,50 €)\n\n")
-
-
-    @staticmethod
-    def winning_control(t, e):
-        (c, n_g) = e.ticket_is_winning(t.b_t.type, t.c.city_name, t.n_p)
-    
-        if c:
-            (g, n) = t.a_p.calculate_prize(t.c.city_name, t.b_t.type, len(t.n_p))
-            return ("THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n\nGROSS PRIZE: %s     NET PRIZE: %s\n" % (t.b_t.type.upper(), c.upper(), n_g, g, n))
-        return "THE TICKET IS NOT WINNING\n"
+            amount = input("Enter the amount to play, expressing it up to the second decimal digit: (min: 1,00 €, max: 200,00 €, increments: 0,50 €)\n\n")
+            
+        return  amount.replace(".", ",") + " €"
 
 
     @staticmethod
@@ -68,13 +67,27 @@ Quaterna ---> At least four numbers must be played\nCinquina ---> At least five 
 
         for t in ts:
             print((PrintHelper.print_line("GENERATING THE TICKET " + str(i) + "...")) + "\n")
-            Lotto.set_number_played(t)
-            Lotto.set_bill_type(t)
-            Lotto.set_city(t)
-            Lotto.set_amount(t)
+            numbers = Lotto.choose_numbers()
+            t.set_n_p(numbers)
+            type = Lotto.choose_bill_type(t)
+            t.set_b_t(type)
+            city_name = Lotto.choose_city()
+            t.set_c(city_name)
+            amount = Lotto.choose_amount()
+            t.set_a_p(amount)
             i = i + 1
 
         return ts
+
+
+    @staticmethod
+    def winning_control(t, e):
+        (c, n_g) = e.ticket_is_winning(t.b_t.type, t.c.city_name, t.n_p)
+    
+        if c:
+            (g, n) = t.a_p.calculate_prize(t.c.city_name, t.b_t.type, len(t.n_p))
+            return ("THE TICKET IS WINNING\n\n%s ON THE WHEEL OF %s\nTHE NUMBERS GUESSED ARE: %s\n\nGROSS PRIZE: %s     NET PRIZE: %s\n" % (t.b_t.type.upper(), c.upper(), n_g, g, n))
+        return "THE TICKET IS NOT WINNING\n"
 
 
     @staticmethod
