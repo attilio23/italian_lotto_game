@@ -10,9 +10,9 @@ class City():
         return "%s" % (self.city_name)
     
     
-    def is_city_valid(self, city_name):
+    @staticmethod
+    def is_city_valid(city_name):
         if city_name in City.cities:
-            self.city_name = city_name
             return True
         
         return False

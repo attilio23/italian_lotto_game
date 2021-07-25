@@ -10,11 +10,26 @@ class Ticket():
         self.c = City(city_name) 
         self.n_p = []
 
+
+    def set_n_p(self, x):
+        self.n_p = x.split()
+
+
+    def set_b_t(self, x):
+        self.b_t.type = x
+
     
-    def generate_numbers(self, num_amount):
+    def set_c(self, x):
+        self.c.city_name = x
+    
+
+    @staticmethod
+    def generate_numbers(num_amount):
         mn_amount = 1
         mx_amount = 10
-        
+        delimeter = " "
+        num_generated = []
+
         try:
             if mn_amount <= int(num_amount) <= mx_amount:
                 mn = 1
@@ -24,22 +39,24 @@ class Ticket():
                 while i < int(num_amount):
                     num = randrange(mn, mx + 1)
             
-                    if not(num in self.n_p):
+                    if not(num in num_generated):
                         i = i + 1
-                        self.n_p.append(num)  
+                        num_generated.append(num)  
                 
-                self.n_p.sort()
+                num_generated.sort()
                 i = 0
 
-                while i < len(self.n_p):
-                    self.n_p.insert(i, str(self.n_p.pop(i)))
+                while i < len(num_generated):
+                    num_generated.insert(i, str(num_generated.pop(i)))
                     i = i + 1
  
-                return True
+                s_num_generated = delimeter.join(num_generated)
+                del num_generated
+                return s_num_generated
 
-            return False
+            return ""
         except:
-            return False   
+            return ""   
     
     
     def __str__(self):
